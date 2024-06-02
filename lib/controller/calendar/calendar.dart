@@ -15,7 +15,14 @@ class CalendarController extends GetxController {
   var scaffoldKey = GlobalKey<ScaffoldState>();
   RxBool isLoading = false.obs;
   RxBool isScroll = false.obs;
-  var calendar = <MapEntry<String, List<List<MapEntry<String, Map<String, dynamic>>>>>>[];
+  int prevYears = 0;
+  int nextYears = 0;
+  var calendar =
+  <MapEntry<String, List<List<MapEntry<String, Map<String, dynamic>>>>>>[];
+
+  var listCalendars = <List<
+      MapEntry<String, List<List<MapEntry<String, Map<String, dynamic>>>>>>>[];
+
   RxList<IncomeResponseModel> incomes = <IncomeResponseModel>[].obs;
   RxList<PeriodResponseModel> periods = <PeriodResponseModel>[].obs;
   final DateTime now = DateTime.now();
@@ -64,6 +71,122 @@ class CalendarController extends GetxController {
 
     spendingPlan.addAll(await SpendingPlanNetwork.getSpendings(periodIds));
 
+    calendar = await inflateCalendar(
+        now: now,
+        spendingPlan: spendingPlan,
+        incomes: incomes,
+        nowStr: nowStr,
+        periods: periods);
+
+    listCalendars.add(calendar);
+
+    isLoading.value = true;
+
+    if (scroll) {
+      WidgetsBinding.instance.addPostFrameCallback((_) =>
+          Scrollable.ensureVisible(dataKey.currentContext!,
+              duration: const Duration(milliseconds: 0)));
+    } else {
+      update();
+    }
+  }
+
+  Future<void> addYear() async {
+    nextYears = nextYears+1;
+
+    var calendar2 = await inflateCalendar(
+        now: now.add(Duration(days: nextYears * 365)),
+        spendingPlan: spendingPlan,
+        incomes: incomes,
+        nowStr: nowStr,
+        periods: periods);
+
+    listCalendars.add(calendar2);
+
+    update();
+  }
+  Future<void> addYearToFirstPlace() async {
+    prevYears = prevYears+1;
+
+    var calendar2 = await inflateCalendar(
+        now: now.subtract(Duration(days: prevYears * 365)),
+        spendingPlan: spendingPlan,
+        incomes: incomes,
+        nowStr: nowStr,
+        periods: periods);
+
+    listCalendars.insert(0,calendar2);
+
+    update();
+  }
+
+  void initializeMy({bool scroll = true}) async {
+    calendar.clear();
+    spendingPlan.clear();
+
+    if (scroll) {
+      periodIds.clear();
+      periods.clear();
+      expenses.clear();
+      incomes.clear();
+      spendings.clear();
+      periods.addAll(await PlanningNetwork.getPeriods(all: true));
+
+      if (periods.isNotEmpty) {
+        for (var i in periods) {
+          periodIds.add(i.id);
+          periodDays.add(i.day);
+
+          if (i.planning?.expenses != null) {
+            expenses.addAll(i.planning!.expenses!.toList());
+          }
+        }
+      } else {
+        Get.offAllNamed('/period');
+      }
+
+      incomes.addAll(await DashboardNetwork.getAllIncomes(periodIds));
+      spendings.addAll(await DashboardNetwork.getSpendingsAll(periodIds));
+    }
+
+    spendingPlan.addAll(await SpendingPlanNetwork.getSpendings(periodIds));
+
+    calendar = await inflateCalendar(
+        now: now,
+        spendingPlan: spendingPlan,
+        incomes: incomes,
+        nowStr: nowStr,
+        periods: periods);
+
+    final String nowStr2 = DateFormat('dd.MM.y')
+        .format(DateTime.now().add(const Duration(days: 365)));
+
+    var calendar2 = await inflateCalendar(
+        now: now.add(const Duration(days: 365)),
+        spendingPlan: spendingPlan,
+        incomes: incomes,
+        nowStr: nowStr2,
+        periods: periods);
+
+    listCalendars.add(calendar);
+    listCalendars.add(calendar2);
+
+    isLoading.value = true;
+  }
+
+  Future<
+      List<
+          MapEntry<String,
+              List<List<MapEntry<String, Map<String, dynamic>>>>>>>
+  inflateCalendar(
+      {required DateTime now,
+        required List<SpendingResponseModel> spendingPlan,
+        required RxList<IncomeResponseModel> incomes,
+        required String nowStr,
+        required RxList<PeriodResponseModel> periods}) async {
+    var calendar = <MapEntry<String,
+        List<List<MapEntry<String, Map<String, dynamic>>>>>>[];
+
     for (var month in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) {
       List<List<MapEntry<String, Map<String, dynamic>>>> rows = [];
       final dayInMonth = getDaysInMonth(now.year, month);
@@ -71,7 +194,8 @@ class CalendarController extends GetxController {
       int day = 0;
 
       for (var row = 0; row <= length; row++) {
-        List<MapEntry<String, Map<String, dynamic>>> rowDays = <MapEntry<String, Map<String, dynamic>>>[];
+        List<MapEntry<String, Map<String, dynamic>>> rowDays =
+        <MapEntry<String, Map<String, dynamic>>>[];
         DateTime? date;
 
         if (row == 0) {
@@ -109,13 +233,29 @@ class CalendarController extends GetxController {
             color = Colors.white;
           }
 
-          final (int, DateTime, PeriodResponseModel?, bool, bool, DateTime)? list = await getPeriod(date);
+          final (
+          int,
+          DateTime,
+          PeriodResponseModel?,
+          bool,
+          bool,
+          DateTime
+          )? list = await getPeriod(date, now, periods);
+
           final PeriodResponseModel? period = list!.$3;
-          final double spendingPlanPrice = spendingPlan.where((p0) => p0.periodId == period?.id && p0.date == DateFormat('dd.MM.y').format(date!)).map((e) => e.price).fold(0, (a, b) => a + b);
+          final double spendingPlanPrice = spendingPlan
+              .where((p0) =>
+          p0.periodId == period?.id &&
+              p0.date == DateFormat('dd.MM.y').format(date!))
+              .map((e) => e.price)
+              .fold(0, (a, b) => a + b);
           double saldo = 0;
           double priceToDay = 0;
-          final double income = incomes.where((element) => element.categoryId == 0 && element.periodId == period?.id).map((element) => element.price).fold(0, (a, b) => a + b);
-          final double spending = spendings.where((element) => element.date == DateFormat('dd.MM.y').format(date!) && element.periodId == period?.id).map((element) => element.price).fold(0, (a, b) => a + b);
+          final double income = incomes
+              .where((element) =>
+          element.categoryId == 0 && element.periodId == period?.id)
+              .map((element) => element.price)
+              .fold(0, (a, b) => a + b);
 
           if (list.$3 != null) {
             final planning = getPlanningToDay(date, list.$1, list.$2, period!);
@@ -123,23 +263,44 @@ class CalendarController extends GetxController {
             priceToDay = planning[2];
           }
 
-          if (list.$4 && list.$2.millisecondsSinceEpoch <= date.millisecondsSinceEpoch && now.month >= date.month && now.millisecondsSinceEpoch >= date.millisecondsSinceEpoch) {
-            background = const Color(0xFF76C86C);
-            color = Colors.white;
+          if (now.year == this.now.year) {
+            if (list.$4 &&
+                list.$2.millisecondsSinceEpoch <= date.millisecondsSinceEpoch &&
+                now.month >= date.month &&
+                now.millisecondsSinceEpoch >= date.millisecondsSinceEpoch) {
+              background = const Color(0xFF76C86C);
+              color = Colors.white;
+            }
           }
 
-          if (income < period!.price && list.$4 && list.$2.millisecondsSinceEpoch <= now.millisecondsSinceEpoch && list.$6.millisecondsSinceEpoch >= now.millisecondsSinceEpoch && date.month >= list.$2.month && now.millisecondsSinceEpoch >= date.millisecondsSinceEpoch) {
+          if (income < period!.price &&
+              list.$4 &&
+              list.$2.millisecondsSinceEpoch <= now.millisecondsSinceEpoch &&
+              list.$6.millisecondsSinceEpoch >= now.millisecondsSinceEpoch &&
+              date.month >= list.$2.month &&
+              now.millisecondsSinceEpoch >= date.millisecondsSinceEpoch) {
             background = const Color(0xFFE33E34);
             color = Colors.white;
           }
 
           final List<Color> colorList = <Color>[];
 
-          if (spending > 0 && list.$2.millisecondsSinceEpoch <= date.millisecondsSinceEpoch && now.month == date.month && list.$6.month <= now.month && saldo > 0) {
-            colorList.add(const Color(0xFF76C86C));
+          if (now.year == this.now.year) {
+            if (list.$2.millisecondsSinceEpoch <= date.millisecondsSinceEpoch &&
+                now.month == date.month &&
+                date.millisecondsSinceEpoch <= now.millisecondsSinceEpoch &&
+                list.$6.month <= now.month &&
+                saldo > 0) {
+              colorList.add(const Color(0xFF76C86C));
+            }
           }
 
-          if (spending > 0 && list.$6.millisecondsSinceEpoch >= now.millisecondsSinceEpoch && list.$2.millisecondsSinceEpoch <= now.millisecondsSinceEpoch && list.$2.millisecondsSinceEpoch <= date.millisecondsSinceEpoch && list.$6.millisecondsSinceEpoch >= date.millisecondsSinceEpoch && now.month == date.month && saldo < 0) {
+          if (list.$6.millisecondsSinceEpoch >= now.millisecondsSinceEpoch &&
+              list.$2.millisecondsSinceEpoch <= now.millisecondsSinceEpoch &&
+              list.$2.millisecondsSinceEpoch <= date.millisecondsSinceEpoch &&
+              list.$6.millisecondsSinceEpoch >= date.millisecondsSinceEpoch &&
+              now.month == date.month &&
+              saldo < 0) {
             colorList.add(const Color(0xFFE33E34));
           }
 
@@ -151,7 +312,17 @@ class CalendarController extends GetxController {
             bottom = colorList;
           }
 
-          rowDays.add(MapEntry('$day', {'periodId': list.$3?.id, 'priceToDay': priceToDay, 'spendingPlanPrice': 0.0, 'date': DateFormat('dd.MM.y').format(date), 'start': list.$4, 'end': list.$5, 'background': background, 'color': color, 'bottom': bottom}));
+          rowDays.add(MapEntry('$day', {
+            'periodId': list.$3?.id,
+            'priceToDay': priceToDay,
+            'spendingPlanPrice': 0.0,
+            'date': DateFormat('dd.MM.y').format(date),
+            'start': list.$4,
+            'end': list.$5,
+            'background': background,
+            'color': color,
+            'bottom': bottom
+          }));
 
           if (day == dayInMonth) {
             day = 0;
@@ -174,23 +345,24 @@ class CalendarController extends GetxController {
       calendar.add(MapEntry('${tr('text_month_$month')} ${now.year}', rows));
     }
 
-    isLoading.value = true;
-
-    if (scroll) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => Scrollable.ensureVisible(dataKey.currentContext!, duration: const Duration(milliseconds: 600)));
-    } else {
-      update();
-    }
+    return calendar;
   }
 
-  Future<(int, DateTime, PeriodResponseModel?, bool, bool, DateTime)?> getPeriod(DateTime date) async {
+  Future<(int, DateTime, PeriodResponseModel?, bool, bool, DateTime)?>
+  getPeriod(DateTime date, DateTime now,
+      RxList<PeriodResponseModel> periods) async {
     List<Map<String, dynamic>> dates = [];
 
     for (var (index, element) in periods.indexed) {
       if (index == 0) {
-        DateTime startDate = DateTime(date.year, date.month, periods[periods.length-1].day).subtractMonths(1);
-        String endDateStr = DateFormat('y-${'${date.month}'.padLeft(2, '0')}-${'${element.day}'.padLeft(2, '0')}').format(now.toUtc());
-        DateTime endDate = DateTime.parse(endDateStr).subtract(const Duration(days: 1));
+        DateTime startDate =
+        DateTime(date.year, date.month, periods[periods.length - 1].day)
+            .subtractMonths(1);
+        String endDateStr = DateFormat(
+            'y-${'${date.month}'.padLeft(2, '0')}-${'${element.day}'.padLeft(2, '0')}')
+            .format(now.toUtc());
+        DateTime endDate =
+        DateTime.parse(endDateStr).subtract(const Duration(days: 1));
         bool fixStart = false;
         bool fixEnd = false;
 
@@ -215,12 +387,21 @@ class CalendarController extends GetxController {
         final start = DateFormat('y-MM-dd').format(startDate);
         final end = DateFormat('y-MM-dd').format(endDate);
 
-        dates.add({'id': periods[periods.length-1].id, 'start': start, 'end': end, 'fix': fixStart || fixEnd});
+        dates.add({
+          'id': periods[periods.length - 1].id,
+          'start': start,
+          'end': end,
+          'fix': fixStart || fixEnd
+        });
       } else {
-        DateTime startDate = DateTime.parse(dates[dates.length-1]['end']).addDays(1);
-        String endDateStr = DateFormat('y-${'${date.month}'.padLeft(2, '0')}-${'${element.day}'.padLeft(2, '0')}').format(date);
-        DateTime endDate = DateTime.parse(endDateStr).subtract(const Duration(days: 1));
-        bool fixStart = dates[dates.length-1]['fix'] ?? false;
+        DateTime startDate =
+        DateTime.parse(dates[dates.length - 1]['end']).addDays(1);
+        String endDateStr = DateFormat(
+            'y-${'${date.month}'.padLeft(2, '0')}-${'${element.day}'.padLeft(2, '0')}')
+            .format(date);
+        DateTime endDate =
+        DateTime.parse(endDateStr).subtract(const Duration(days: 1));
+        bool fixStart = dates[dates.length - 1]['fix'] ?? false;
         bool fixEnd = false;
 
         if (element.ever) {
@@ -244,21 +425,32 @@ class CalendarController extends GetxController {
         final start = DateFormat('y-MM-dd').format(startDate);
         final end = DateFormat('y-MM-dd').format(endDate);
 
-        dates.add({'id': periods[index-1].id, 'start': start, 'end': end, 'fix': fixStart || fixEnd});
+        dates.add({
+          'id': periods[index - 1].id,
+          'start': start,
+          'end': end,
+          'fix': fixStart || fixEnd
+        });
       }
 
-      if (periods.length-1 == index) {
-        DateTime startDate = DateTime.parse(dates[dates.length-1]['end']).add(const Duration(days: 1));
+      if (periods.length - 1 == index) {
+        DateTime startDate = DateTime.parse(dates[dates.length - 1]['end'])
+            .add(const Duration(days: 1));
         int addDay = 0;
 
         if (date.month == DateTime.february) {
-          final bool isLeapYear = (date.year % 4 == 0) && (date.year % 100 != 0) || (date.year % 400 == 0);
+          final bool isLeapYear =
+              (date.year % 4 == 0) && (date.year % 100 != 0) ||
+                  (date.year % 400 == 0);
           addDay = isLeapYear ? 1 : 0;
         } else {
           addDay = 1;
         }
 
-        String endDateStr = DateFormat('y-MM-dd').format(startDate.add(Duration(days: DateTime.parse(dates[0]['end']).daysSince(DateTime.parse(dates[0]['start'])) + addDay)));
+        String endDateStr = DateFormat('y-MM-dd').format(startDate.add(Duration(
+            days: DateTime.parse(dates[0]['end'])
+                .daysSince(DateTime.parse(dates[0]['start'])) +
+                addDay)));
 
         DateTime endDate = DateTime.parse(endDateStr);
 
@@ -266,7 +458,11 @@ class CalendarController extends GetxController {
           endDate = endDate.subtract(const Duration(days: 3));
         }
 
-        dates.add({'id': element.id, 'start': DateFormat('y-MM-dd').format(startDate), 'end': DateFormat('y-MM-dd').format(endDate)});
+        dates.add({
+          'id': element.id,
+          'start': DateFormat('y-MM-dd').format(startDate),
+          'end': DateFormat('y-MM-dd').format(endDate)
+        });
       }
     }
 
@@ -274,24 +470,48 @@ class CalendarController extends GetxController {
       final List<String> splitStart = i['start'].toString().split('-');
       final List<String> splitEnd = i['end'].toString().split('-');
 
-      final timeStart = DateTime(int.parse(splitStart[0]), int.parse(splitStart[1]), int.parse(splitStart[2]));
-      final timeEnd = DateTime(int.parse(splitEnd[0]), int.parse(splitEnd[1]), int.parse(splitEnd[2]));
+      final timeStart = DateTime(int.parse(splitStart[0]),
+          int.parse(splitStart[1]), int.parse(splitStart[2]));
+      final timeEnd = DateTime(int.parse(splitEnd[0]), int.parse(splitEnd[1]),
+          int.parse(splitEnd[2]));
 
-      if (date.millisecondsSinceEpoch >= timeStart.millisecondsSinceEpoch && date.millisecondsSinceEpoch <= timeEnd.millisecondsSinceEpoch) {
+      if (date.millisecondsSinceEpoch >= timeStart.millisecondsSinceEpoch &&
+          date.millisecondsSinceEpoch <= timeEnd.millisecondsSinceEpoch) {
         final start = DateTime.parse(i['start']);
         final end = DateTime.parse(i['end']);
 
-        return (end.daysSince(start), start, periods.firstWhereOrNull((element) => element.id == i['id']), end != date && start == date, end == date, end);
+        return (
+        end.daysSince(start),
+        start,
+        periods.firstWhereOrNull((element) => element.id == i['id']),
+        end != date && start == date,
+        end == date,
+        end
+        );
       }
     }
 
     return null;
   }
 
-  List<double> getPlanningToDay(DateTime dates, int periodDayCount, DateTime startDay, PeriodResponseModel period) {
-    final double expenseTotal = expenses.where((p0) => p0.planningId == period.planningId && p0.categoryId != 0).map((e) => [6,7].contains(e.categoryId) ? ((e.price / 100) * period.price) : e.price).fold(0, (a, b) => a + b);
-    final double realIncome = incomes.where((element) => element.categoryId != 0 && element.periodId == period.id).map((element) => element.price).fold(0, (a, b) => a + b);
-    final incomeSum = incomes.where((element) => element.categoryId == 0 && element.periodId == period.id).map((element) => element.price).fold(0, (a, b) => a + b);
+  List<double> getPlanningToDay(DateTime dates, int periodDayCount,
+      DateTime startDay, PeriodResponseModel period) {
+    final double expenseTotal = expenses
+        .where((p0) => p0.planningId == period.planningId && p0.categoryId != 0)
+        .map((e) => [6, 7].contains(e.categoryId)
+        ? ((e.price / 100) * period.price)
+        : e.price)
+        .fold(0, (a, b) => a + b);
+    final double realIncome = incomes
+        .where((element) =>
+    element.categoryId != 0 && element.periodId == period.id)
+        .map((element) => element.price)
+        .fold(0, (a, b) => a + b);
+    final incomeSum = incomes
+        .where((element) =>
+    element.categoryId == 0 && element.periodId == period.id)
+        .map((element) => element.price)
+        .fold(0, (a, b) => a + b);
     final double realCleanTotal = incomeSum - realIncome;
     final double cleanIncome = incomeSum - expenseTotal;
     double spendTotal = 0;
@@ -304,10 +524,26 @@ class CalendarController extends GetxController {
 
     for (var i = 0; i < periodDayCount + 1; i++) {
       final DateTime format = startDay.add(Duration(days: i));
-      double spendingToDay = spendings.where((element) => element.date == DateFormat('dd.MM.y').format(format) && element.periodId == period.id && (element.type ?? false)).map((element) => element.price).fold(0, (a, b) => a + b);
-      spendingToDay -= spendings.where((element) => element.date == DateFormat('dd.MM.y').format(format) && element.periodId == period.id && !(element.type ?? false)).map((element) => element.price).fold(0, (a, b) => a + b);
+      double spendingToDay = spendings
+          .where((element) =>
+      element.date == DateFormat('dd.MM.y').format(format) &&
+          element.periodId == period.id &&
+          (element.type ?? false))
+          .map((element) => element.price)
+          .fold(0, (a, b) => a + b);
+      spendingToDay -= spendings
+          .where((element) =>
+      element.date == DateFormat('dd.MM.y').format(format) &&
+          element.periodId == period.id &&
+          !(element.type ?? false))
+          .map((element) => element.price)
+          .fold(0, (a, b) => a + b);
       spendTotal += spendingToDay;
-      double spendingPlanPrice = spendingPlan.where((element) => element.date == DateFormat('dd.MM.y').format(format)).map((element) => element.price).fold(0, (a, b) => a + b);
+      double spendingPlanPrice = spendingPlan
+          .where(
+              (element) => element.date == DateFormat('dd.MM.y').format(format))
+          .map((element) => element.price)
+          .fold(0, (a, b) => a + b);
       final double cell1 = spendingToDay;
 
       double income = 0.0;
@@ -331,7 +567,8 @@ class CalendarController extends GetxController {
             cell3 = prevList[2];
           }
         } else {
-          cell3 = ((income - spendTotal) / ((periodDayCount + 1) - (i + 1) + 1));
+          cell3 =
+          ((income - spendTotal) / ((periodDayCount + 1) - (i + 1) + 1));
         }
 
         if (spendingPlanPrice > 0) {
@@ -349,13 +586,15 @@ class CalendarController extends GetxController {
             changeCell3 = (spendingPlanPrice - cell3) / (list.length - 1);
 
             for (var index = dateNowIndex; index < i; index++) {
-              list[index][2] = (double.tryParse('${list[index][2]}') ?? 0) - changeCell3;
+              list[index][2] =
+                  (double.tryParse('${list[index][2]}') ?? 0) - changeCell3;
             }
           } else {
             changeCell3 = (cell3 - spendingPlanPrice) / (list.length - 1);
 
             for (var index = dateNowIndex; index < i; index++) {
-              list[index][2] = (double.tryParse('${list[index][2]}') ?? 0) + changeCell3;
+              list[index][2] =
+                  (double.tryParse('${list[index][2]}') ?? 0) + changeCell3;
             }
           }
 
@@ -378,7 +617,13 @@ class CalendarController extends GetxController {
         index2 = index;
       }
 
-      final arrList = [cell1, cell2, cell3, cell4, DateFormat('dd.MM.y').format(format)];
+      final arrList = [
+        cell1,
+        cell2,
+        cell3,
+        cell4,
+        DateFormat('dd.MM.y').format(format)
+      ];
 
       list.add(arrList);
       prevList = arrList;
