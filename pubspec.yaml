@@ -1,0 +1,66 @@
+name: affordable
+description: "Affordable"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.6 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_launcher_icons: ^0.13.1
+  flutter_svg: ^2.0.5
+  http: ^1.2.0
+  get: ^4.6.6
+  supabase_flutter: ^2.3.3
+  shared_preferences: ^2.2.2
+  email_validator: ^2.1.16
+  google_sign_in: ^6.2.1
+  flutter_verification_code: ^1.1.7
+  pie_chart: ^5.4.0
+  intl: ^0.18.1
+  flutter_slidable: ^3.0.1
+  easy_localization: ^3.0.5
+  app_links: ^3.5.1
+  mailer: ^6.1.0
+  collection: ^1.18.0
+  fl_chart: ^0.67.0
+  math_expressions: ^2.4.0
+  tinkoff_sdk: ^0.5.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.1
+
+flutter_launcher_icons:
+  image_path: "assets/images/appicon.jpg"
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  android_12:
+    image_path: "assets/images/appicon.jpg"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/icons/
+    - assets/translations/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Black.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: assets/fonts/Poppins-ExtraBold.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/Poppins-SemiBold.ttf

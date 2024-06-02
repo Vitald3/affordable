@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="29px" height="26px" viewBox="0 0 29 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Slice</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-7" transform="translate(2.000000, 1.000000)" stroke="#222021">
+            <circle id="Oval" cx="12.5" cy="12.5" r="12"></circle>
+            <line x1="12.5" y1="1.5" x2="12.5" y2="23.5" id="Line-5" stroke-linecap="square"></line>
+            <path d="M12.5,0.5 C7.83333333,3.3765518 5.5,7.3765518 5.5,12.5 C5.5,17.6234482 7.83333333,21.6234482 12.5,24.5" id="Line-5" stroke-linecap="round"></path>
+            <path d="M19.5,0.5 C14.8333333,3.3765518 12.5,7.3765518 12.5,12.5 C12.5,17.6234482 14.8333333,21.6234482 19.5,24.5" id="Line-5" stroke-linecap="round" transform="translate(16.000000, 12.500000) rotate(180.000000) translate(-16.000000, -12.500000) "></path>
+            <line x1="1.5" y1="12.5" x2="23.5" y2="12.5" id="Line-21" stroke-linecap="square"></line>
+            <path d="M3.5,4.5 C6.5,5.81760084 9.5,6.47640126 12.5,6.47640126 C15.5,6.47640126 18.5,5.81760084 21.5,4.5" id="Line-21" stroke-linecap="round"></path>
+            <path d="M3.5,18.5 C6.5,19.8176008 9.5,20.4764013 12.5,20.4764013 C15.5,20.4764013 18.5,19.8176008 21.5,18.5" id="Line-21" stroke-linecap="round" transform="translate(12.500000, 19.488201) rotate(180.000000) translate(-12.500000, -19.488201) "></path>
+        </g>
+    </g>
+</svg>

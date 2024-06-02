@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="31px" height="32px" viewBox="0 0 31 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-13-mini" transform="translate(-253, -760)" stroke="#222021">
+            <g id="Group-42" transform="translate(0, 729)">
+                <g id="Group" transform="translate(253, 32)">
+                    <path d="M26,1.90909091 C27.2426407,1.90909091 28.3676407,2.41277057 29.1819805,3.22711039 C29.9963203,4.04145022 30.5,5.16645022 30.5,6.40909091 L30.5,26 C30.5,27.2426407 29.9963203,28.3676407 29.1819805,29.1819805 C28.3676407,29.9963203 27.2426407,30.5 26,30.5 L5,30.5 C3.75735931,30.5 2.63235931,29.9963203 1.81801948,29.1819805 C1.00367966,28.3676407 0.5,27.2426407 0.5,26 L0.5,6.40909091 C0.5,5.16645022 1.00367966,4.04145022 1.81801948,3.22711039 C2.63235931,2.41277057 3.75735931,1.90909091 5,1.90909091 Z" id="Combined-Shape"></path>
+                    <line x1="8.45454545" y1="0" x2="8.45454545" y2="4.22727273" id="Line-4"></line>
+                    <line x1="22.5454545" y1="0" x2="22.5454545" y2="4.22727273" id="Line-4"></line>
+                    <rect id="Rectangle" x="21.6363636" y="21.6363636" width="3.22727273" height="3.22727273" rx="1"></rect>
+                    <rect id="Rectangle" x="13.1818182" y="21.6363636" width="3.22727273" height="3.22727273" rx="1"></rect>
+                    <rect id="Rectangle" x="21.6363636" y="14.5909091" width="3.22727273" height="3.22727273" rx="1"></rect>
+                    <rect id="Rectangle" fill="#76C86C" x="13.1818182" y="14.5909091" width="3.22727273" height="3.22727273" rx="1"></rect>
+                    <rect id="Rectangle" x="4.72727273" y="21.6363636" width="3.22727273" height="3.22727273" rx="1"></rect>
+                    <line x1="1.62297078" y1="9.15909091" x2="29.9809253" y2="9.15909091" id="Line-2" stroke-linecap="square"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

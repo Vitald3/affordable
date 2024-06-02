@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="25px" viewBox="0 0 27 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>iPhone 13 mini</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-13-mini" transform="translate(-15.000000, -166.000000)">
+            <rect fill="#FFFFFF" x="0" y="0" width="375" height="812"></rect>
+            <g id="Group-4" transform="translate(16.000000, 167.000000)" stroke-linecap="round">
+                <path d="M19.6061146,22.7850148 C22.8651858,20.528994 25,16.7638033 25,12.5 C25,5.59644063 19.4035594,0 12.5,0 C5.59644063,0 0,5.59644063 0,12.5 C0,16.7831121 2.15419321,20.5630854 5.43823105,22.8155713" id="Path" stroke="#725CFD"></path>
+                <path d="M24.9479563,11.3516524 C24.3682026,4.98635396 19.016414,0 12.5,0 M0,12.5 C0,16.7831121 2.15419321,20.5630854 5.43823105,22.8155713" id="Shape" stroke="#6FCF97"></path>
+                <path d="M12.5,0 C12.3716959,0 12.2438434,0.00193306571 12.1164698,0.00577166176 C5.3903517,0.208473485 0,5.72474469 0,12.5 C0,16.7831121 2.15419321,20.5630854 5.43823105,22.8155713" id="Path" stroke="#FFDF6A"></path>
+                <line x1="7.34375" y1="5.40322581" x2="17.65625" y2="5.40322581" id="Line-15" stroke="#4A4A4A"></line>
+                <line x1="7.34375" y1="9.82258065" x2="17.65625" y2="9.92258065" id="Line-15" stroke="#4A4A4A"></line>
+                <line x1="7.34375" y1="14.4032258" x2="17.65625" y2="14.4032258" id="Line-15" stroke="#4A4A4A"></line>
+                <line x1="7.34375" y1="18.8225806" x2="17.65625" y2="18.9225806" id="Line-15" stroke="#4A4A4A"></line>
+                <path d="M0.0492982841,11.382208 C0.0166650945,11.7504483 0,12.123278 0,12.5 C0,16.7831121 2.15419321,20.5630854 5.43823105,22.8155713" id="Path" stroke="#FD666F"></path>
+            </g>
+        </g>
+    </g>
+</svg>

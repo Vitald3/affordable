@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="19px" viewBox="0 0 16 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 8</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2-периода-ЗП,-Аванс" transform="translate(-338, -390)" stroke="#4A4A4A">
+            <g id="Group-8" transform="translate(338, 390)">
+                <path d="M14.5,5 L13.2011129,16.3392852 C13.0929448,17.283593 12.2350149,18 11.2123314,18 L4.79315858,18 C3.77081507,18 2.91305539,17.2840553 2.80447133,16.340106 L1.5,5 L1.5,5" id="Path" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="" id="Rectangle"></path>
+                <path d="M9.5,0.5 C9.77614237,0.5 10.0261424,0.611928813 10.2071068,0.792893219 C10.3880712,0.973857625 10.5,1.22385763 10.5,1.5 L10.5,2.5 L5.5,2.5 L5.5,1.5 C5.5,1.22385763 5.61192881,0.973857625 5.79289322,0.792893219 C5.97385763,0.611928813 6.22385763,0.5 6.5,0.5 Z" id="Rectangle"></path>
+                <line x1="5.5" y1="7.5" x2="5.5" y2="13.5" id="Line" stroke-linecap="round"></line>
+                <line x1="8" y1="7.5" x2="8" y2="13.5" id="Line" stroke-linecap="round"></line>
+                <line x1="10.5" y1="7.5" x2="10.5" y2="13.5" id="Line" stroke-linecap="round"></line>
+            </g>
+        </g>
+    </g>
+</svg>

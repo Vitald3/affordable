@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="31px" height="31px" viewBox="0 0 31 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 7</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2-периода-ЗП,-Аванс" transform="translate(-326, -92)" stroke="#2F79F6">
+            <g id="Group-7" transform="translate(326, 92)">
+                <circle id="Oval" transform="translate(15.5, 15.5) rotate(180) translate(-15.5, -15.5)" cx="15.5" cy="15.5" r="15"></circle>
+                <line x1="15.5" y1="9" x2="15.5" y2="22" id="Line-5" stroke-width="2" stroke-linecap="round"></line>
+                <line x1="9" y1="15.5" x2="22" y2="15.5" id="Line-9" stroke-width="2" stroke-linecap="round"></line>
+            </g>
+        </g>
+    </g>
+</svg>

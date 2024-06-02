@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="25px" viewBox="0 0 24 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>iPhone 13 mini</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-13-mini" transform="translate(-17.000000, -165.000000)">
+            <rect fill="#FFFFFF" x="0" y="0" width="375" height="812"></rect>
+            <g id="icn_favorites_grey_24" transform="translate(17.000000, 165.000000)">
+                <polygon id="bounds" points="0 0 24 0 24 24 0 24"></polygon>
+                <g id="Group-2" transform="translate(0.000000, 0.000000)" stroke="#4A4A4A">
+                    <g id="Group-3" transform="translate(11.000000, 3.500000) rotate(180.000000) translate(-11.000000, -3.500000) translate(7.500000, 0.000000)" stroke-linecap="round">
+                        <line x1="3.5" y1="6.5625" x2="3.5" y2="0.4375" id="Line"></line>
+                        <polyline id="Path" stroke-linejoin="round" points="0 4 3.48894031 0 7 4"></polyline>
+                    </g>
+                    <path d="M5.5,4.5 L5.5,8 C5.5,8.41421356 5.66789322,8.78921356 5.93933983,9.06066017 C6.21078644,9.33210678 6.58578644,9.5 7,9.5 L15,9.5 C15.4142136,9.5 15.7892136,9.33210678 16.0606602,9.06066017 C16.3321068,8.78921356 16.5,8.41421356 16.5,8 L16.5,4.5 L17,4.5 C18.2426407,4.5 19.3676407,5.00367966 20.1819805,5.81801948 C20.9963203,6.63235931 21.5,7.75735931 21.5,9 L21.5,20 C21.5,21.2426407 20.9963203,22.3676407 20.1819805,23.1819805 C19.3676407,23.9963203 18.2426407,24.5 17,24.5 L5,24.5 C3.75735931,24.5 2.63235931,23.9963203 1.81801948,23.1819805 C1.00367966,22.3676407 0.5,21.2426407 0.5,20 L0.5,9 C0.5,7.75735931 1.00367966,6.63235931 1.81801948,5.81801948 C2.63235931,5.00367966 3.75735931,4.5 5,4.5 L5.5,4.5 Z" id="Combined-Shape"></path>
+                    <rect id="Rectangle" fill="#FFFFFF" x="14.5" y="11.5" width="8" height="6" rx="2"></rect>
+                    <circle id="Oval" fill="#F3D842" cx="17.5" cy="14.5" r="1"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

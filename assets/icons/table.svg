@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icn_home_grey_24</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-13-mini" transform="translate(-27, -958)">
+            <g id="icn_home_grey_24" transform="translate(36, 967) scale(-1, 1) rotate(90) translate(-36, -967)translate(27, 958)">
+                <rect id="bounds" x="0" y="0" width="18" height="18"></rect>
+                <g id="Group" transform="translate(0.75, 1.5)" stroke="#FFFFFF">
+                    <path d="M11.5,1.25 C12.7426407,1.25 13.8676407,1.75367966 14.6819805,2.56801948 C15.4963203,3.38235931 16,4.50735931 16,5.75 L16,13.5 C16,14.1903559 15.720178,14.8153559 15.267767,15.267767 C14.8153559,15.720178 14.1903559,16 13.5,16 L5,16 C3.75735931,16 2.63235931,15.4963203 1.81801948,14.6819805 C1.00367966,13.8676407 0.5,12.7426407 0.5,11.5 L0.5,5.75 C0.5,4.50735931 1.00367966,3.38235931 1.81801948,2.56801948 C2.63235931,1.75367966 3.75735931,1.25 5,1.25 L11.5,1.25 Z" id="Combined-Shape"></path>
+                    <line x1="3.75" y1="0" x2="3.75" y2="2.25" id="Line-4"></line>
+                    <line x1="6.75" y1="0" x2="6.75" y2="2.25" id="Line-4"></line>
+                    <line x1="9.75" y1="0" x2="9.75" y2="2.25" id="Line-4"></line>
+                    <line x1="12.75" y1="0" x2="12.75" y2="2.25" id="Line-4"></line>
+                    <polyline id="Path-3" stroke-linecap="round" stroke-linejoin="round" points="3 4.51006321 3.97355173 5.17046391 2.58174018 6.50509694"></polyline>
+                    <polyline id="Path-3" stroke-linecap="round" stroke-linejoin="round" points="7.5 4.51006321 8.47355173 5.17046391 7.08174018 6.50509694"></polyline>
+                    <polyline id="Path-3" stroke-linecap="round" stroke-linejoin="round" points="12 4.51006321 12.9735517 5.17046391 11.5817402 6.50509694"></polyline>
+                    <line x1="3.375" y1="8.625" x2="3.375" y2="13.875" id="Line-6" stroke-linecap="round"></line>
+                    <line x1="7.875" y1="8.625" x2="7.875" y2="13.875" id="Line-6" stroke-linecap="round"></line>
+                </g>
+                <circle id="Oval" stroke="#FFFFFF" cx="13.875" cy="14.625" r="2.875"></circle>
+                <polyline id="Path-4" stroke="#FFFFFF" stroke-linecap="round" transform="translate(13.398, 15.5204) scale(-1, -1) translate(-13.398, -15.5204)" points="12.8342056 14.625 12.8342056 16.4157944 13.9618552 16.4157944"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

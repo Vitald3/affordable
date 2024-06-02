@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="33px" height="33px" viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Slice</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-17" transform="translate(1.000000, 1.000000)">
+            <path d="M28.7188587,22.7958853 L29.9098417,25.1778513 L27.5278756,25.1778513 L28.7188587,22.7958853 Z" id="Triangle" stroke="#B9B9BA" transform="translate(28.718859, 23.677851) rotate(-151.000000) translate(-28.718859, -23.677851) "></path>
+            <path d="M28.6491821,23.7105606 C30.1388999,21.3298162 31,18.5154684 31,15.5 C31,6.93958638 24.0604136,0 15.5,0 C6.93958638,0 0,6.93958638 0,15.5 C0,23.3858252 5.88895692,29.8962108 13.5090333,30.8733193" id="Path" stroke="#B9B9BA" stroke-linecap="round"></path>
+            <polyline id="Path-32" stroke="#B9B9BA" stroke-linecap="round" points="15.5138974 8.57160092 15.5 15.5 20.0976301 15.5"></polyline>
+            <text id="24" font-family="Poppins-Medium, Poppins" font-size="10" font-weight="400" line-spacing="8" fill="#B9B9BA">
+                <tspan x="15.5" y="34.6">24</tspan>
+            </text>
+            <path d="M5,5 L7.00883947,7.00883947" id="Shape" stroke="#B9B9BA" stroke-linecap="round"></path>
+            <path d="M26,5 L24.0392574,6.96074257 M6.99513378,24.0048662 L5,26" id="Shape" stroke="#B9B9BA" stroke-linecap="round"></path>
+            <polyline id="Line-18" stroke="#B9B9BA" stroke-linecap="round" points="1 15.5 0 15.5 3.28529289 15.5 3.5 15.5"></polyline>
+            <polyline id="Line-18" stroke="#B9B9BA" stroke-linecap="round" points="27.5 15.5 27.7141819 15.5 29.7852929 15.5 30.5 15.5"></polyline>
+            <polyline id="Line-19" stroke="#B9B9BA" stroke-linecap="round" points="15.5 1 15.5 0.5 15.5 3.29007786 15.5 3.5"></polyline>
+        </g>
+    </g>
+</svg>

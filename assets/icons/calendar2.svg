@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="31px" height="32px" viewBox="0 0 31 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 15</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-13-mini" transform="translate(-324, -89)" stroke="#222021">
+            <g id="Group-15" transform="translate(324, 90)">
+                <g id="Group-3" transform="translate(16, 19.5) rotate(180) translate(-16, -19.5)translate(12, 15)" stroke-linecap="round">
+                    <line x1="4" y1="9" x2="4" y2="1" id="Line"></line>
+                    <polyline id="Path" stroke-linejoin="round" points="0 5 3.98736036 0 8 5"></polyline>
+                </g>
+                <path d="M30.5,8.5 L30.5,26 C30.5,27.2426407 29.9963203,28.3676407 29.1819805,29.1819805 C28.3676407,29.9963203 27.2426407,30.5 26,30.5 L5,30.5 C3.75735931,30.5 2.63235931,29.9963203 1.81801948,29.1819805 C1.00367966,28.3676407 0.5,27.2426407 0.5,26 L0.5,8.5 L30.5,8.5 Z" id="Combined-Shape"></path>
+                <line x1="8.4" y1="0" x2="8.4" y2="4.2" id="Line-4"></line>
+                <line x1="22.4" y1="0" x2="22.4" y2="4.2" id="Line-4"></line>
+                <path d="M28,2.5 C28.6903559,2.5 29.3153559,2.77982203 29.767767,3.23223305 C30.220178,3.68464406 30.5,4.30964406 30.5,5 L30.5,8.5 L0.5,8.5 L0.5,5 C0.5,4.30964406 0.779822031,3.68464406 1.23223305,3.23223305 C1.68464406,2.77982203 2.30964406,2.5 3,2.5 Z" id="Rectangle"></path>
+            </g>
+        </g>
+    </g>
+</svg>

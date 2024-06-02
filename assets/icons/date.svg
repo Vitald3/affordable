@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="25px" viewBox="0 0 26 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icn_home_grey_24</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-13-mini" transform="translate(-306, -253)">
+            <g id="icn_home_grey_24" transform="translate(306, 253)">
+                <rect id="bounds" x="0" y="0" width="26" height="25"></rect>
+                <g id="Group" transform="translate(1, 2)" stroke="#979797">
+                    <path d="M19,1.54545455 C20.2426407,1.54545455 21.3676407,2.0491342 22.1819805,2.86347403 C22.9963203,3.67781386 23.5,4.80281386 23.5,6.04545455 L23.5,18 C23.5,19.2426407 22.9963203,20.3676407 22.1819805,21.1819805 C21.3676407,21.9963203 20.2426407,22.5 19,22.5 L5,22.5 C3.75735931,22.5 2.63235931,21.9963203 1.81801948,21.1819805 C1.00367966,20.3676407 0.5,19.2426407 0.5,18 L0.5,6.04545455 C0.5,4.80281386 1.00367966,3.67781386 1.81801948,2.86347403 C2.63235931,2.0491342 3.75735931,1.54545455 5,1.54545455 Z" id="Combined-Shape"></path>
+                    <line x1="6.54545455" y1="0" x2="6.54545455" y2="3.13636364" id="Line-4"></line>
+                    <line x1="17.4545455" y1="0" x2="17.4545455" y2="3.13636364" id="Line-4"></line>
+                    <rect id="Rectangle" x="16.8636364" y="16.1818182" width="2.27272727" height="2.13636364" rx="1"></rect>
+                    <rect id="Rectangle" x="10.3181818" y="16.1818182" width="2.27272727" height="2.13636364" rx="1"></rect>
+                    <rect id="Rectangle" x="16.8636364" y="10.9545455" width="2.27272727" height="2.13636364" rx="1"></rect>
+                    <rect id="Rectangle" x="10.3181818" y="10.9545455" width="2.27272727" height="2.13636364" rx="1"></rect>
+                    <rect id="Rectangle" x="3.77272727" y="16.1818182" width="2.27272727" height="2.13636364" rx="1"></rect>
+                    <line x1="0.477272727" y1="6.79545455" x2="22.4318182" y2="6.79545455" id="Line-2" stroke-linecap="square"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
